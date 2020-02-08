@@ -8,6 +8,9 @@ import './Main.css';
 
 import DevItem from './components/DevItem';
 import DevForm from './components/DevForm';
+import Sidebar from './components/SideBar';
+
+
 
 function App() {
   const [devs, setDevs] = useState([]);
@@ -15,37 +18,41 @@ function App() {
 
   useEffect(() => {
     async function loadDevs() {
-      const response = await api.get('/devs');  
+      const response = await api.get('/devs');
 
       setDevs(response.data);
     }
 
     loadDevs();
-  },[]);
+  }, []);
 
   async function handleAddDev(data) {
     const response = await api.post('/devs', data);
 
-    setDevs([...devs, response.data]); 
+    setDevs([...devs, response.data]);
   }
 
 
   return (
-    <div id="app" >
+    <body >
       <aside>
-        <strong>Cadastrar</strong>
-        <DevForm onSubmit={handleAddDev}/>  
+        {/* <DevForm onSubmit={handleAddDev} /> */} 
+        <Sidebar></Sidebar>
       </aside>
+      
+      <main id="app" >
 
-      <main>
-        <ul>
+      <strong>Cadastrar</strong>
+
+        {/* <ul>
           {devs.map(dev => (
-          <DevItem key={dev._id} dev={dev} 
-          />    
+            <DevItem key={dev._id} dev={dev}
+            />
           ))}
-        </ul>
-      </main>   
-    </div>
+        </ul> */}
+      </main>
+    </body>
+
   );
 }
 
