@@ -174,4 +174,8 @@ la na sessão "expo install ... "
  3)yarn start (inicializa o front)
  4) code . dentro da pasta vai abrir ela com o VSCODE
 
- 11) 
+ **--** Bibliotecas Web **--**
+
+Graficos:
+https://github.com/chartjs/Chart.js
+

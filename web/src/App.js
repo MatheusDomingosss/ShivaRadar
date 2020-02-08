@@ -31,7 +31,7 @@ function App() {
 
 
   return (
-    <div id="app">
+    <div id="app" >
       <aside>
         <strong>Cadastrar</strong>
         <DevForm onSubmit={handleAddDev}/>  
@@ -40,7 +40,8 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-          <DevItem key={dev._id} dev={dev} />    
+          <DevItem key={dev._id} dev={dev} 
+          />    
           ))}
         </ul>
       </main>   
