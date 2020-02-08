@@ -1,5 +1,6 @@
 backendshiva/node_modules
 
+web/node_modules 
 webshiva/node_modules
 
-web/node_modules 
+mobile/node_modules
