@@ -178,4 +178,9 @@ la na sessão "expo install ... "
 
 Graficos:
 https://github.com/chartjs/Chart.js
+    simples:
+    https://reactjsexample.com/fast-simple-charts-for-react/
+
+SideBar:
+https://reactjsexample.com/react-side-nav-component/
 

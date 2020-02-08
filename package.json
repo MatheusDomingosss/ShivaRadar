@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/MatheusDomingosss/ShivaRadar/issues"
   },
-  "homepage": "https://github.com/MatheusDomingosss/ShivaRadar#readme"
+  "homepage": "https://github.com/MatheusDomingosss/ShivaRadar#readme",
+  "dependencies": {
+    "@trendmicro/react-sidenav": "^0.5.0",
+    "react": "^16.12.0"
+  }
 }
