@@ -12,6 +12,7 @@ git branch - mostra todas as linhas do tempo existentes
 git branch (nome) - cria uma linha do tempo alternativa 
 git branch -D (nome) - deleta uma linha do tempo alternativa 
 git merge - une linhas do tempo 
+git checkout (branch) - troca de ramo 
 
 COMANDOS REMOTOS 
 
