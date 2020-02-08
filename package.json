@@ -1,0 +1,19 @@
+{
+  "name": "shivaradar",
+  "version": "1.0.0",
+  "description": "Na esperança de me formar, quem me ajudar vai ganhar um sushi livre por minha conta.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusDomingosss/ShivaRadar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusDomingosss/ShivaRadar/issues"
+  },
+  "homepage": "https://github.com/MatheusDomingosss/ShivaRadar#readme"
+}
