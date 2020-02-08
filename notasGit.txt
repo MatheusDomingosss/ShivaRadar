@@ -1,0 +1,43 @@
+Anotações GIT
+
+COMANDOS LOCAIS
+
+Git init - inicia linha do tempo
+git add - adiciona ou atualiza mudanças para irem a linha do tempo
+git commit - adiciona um ponto a linha do tempo 
+git log - visualiza os pontos na linha do tempo/commit 
+git status - informa o estaddo das alterações do nosso projeto
+git show - apresenta dertemina ponto na historia 
+git branch - mostra todas as linhas do tempo existentes
+git branch (nome) - cria uma linha do tempo alternativa 
+git branch -D (nome) - deleta uma linha do tempo alternativa 
+git merge - une linhas do tempo 
+
+COMANDOS REMOTOS 
+
+git remote add origin (link) - linka o repositorio a pasta 
+git remote -V - ve os repositorios remotos 
+git push -u origin master -cria o "master" no repo online (primeira vez que faz só)
+git add . - adiciona tudo que tiver na pasta, arquivo novo, alterações, etc 
+git push - comando pra upar as alterações (dar add e commit antes de meter o push)
+
+ROTINA CRIAÇÃO
+
+git init
+git remote add origin https://github.com/MatheusDomingosss/RadarShiva.git
+criar o gitignore
+git add .
+git status (ver se ficou tudo verde)
+git commit -m "deploy"
+git push -u origin master
+git status
+git log 
+
+ROTINA POS CRIAÇÃO
+
+git status
+git add .
+git commit -m "update x"
+git push
+git status
+git log 

@@ -1,0 +1,177 @@
+**--** Aula 01 - Conhecendo a OmniStack 13/01 **--**
+
+Instalando NodeJS com o gerenciador de pacote é a melhor prática.
+No caso do sistema operacional Windows 10, a melhor opção é utilizar o
+Chocolatey seguindo as seguintes instruções:
+
+1)Chocolatey.org
+2)install now 
+3)instalar o PowerShell para rodar a instalação do Choco (já vem no Windows 10)
+4) No PowerShell: Get-ExecutionPolicy
+5)se retornar "Restricted", run "Set-ExecutionPolicy AllSigned" e depois confirme com "s"
+6)copiar o comando grande que tem e rodar no powershell 
+7)digite "choco" no pwshell para confirmar instalação 
+8)agora voltamos para instalação do nodejs através do comando: "choco install nodejs-lts" 
+9)no meio da instalação vai pedir uma confirmação com "Y"
+10)agora é instalar o Yarn utilizando o comando: "choco install yarn" 
+
+**--** Aula 02 - Criando a base da aplicação 14/01 **--**
+
+1)criar uma pasta para o projeto
+2)criar uma pasta para o backend
+3)executar dentro: "yarn init -y" (projeto javascript)
+4)package.json foi criado 
+5)usar o terminal com powershell dentro do vscode 
+6)instalar o express (dependecia) usando: "yarn add express"
+7)pasta node_modules foi criada (pacotes)
+8)yarn.loch foi criada (como se fosse um cache)
+9)criar o arquivo index.js na raiz do projeto
+10)chama o "node index.js" pra testar o codigo 
+11)abrir chrome na porta que voce setou 
+12)toda vez que voce usaria o ".send" usar o ".json"
+13)run: yarn add nodemon -D 
+14)para rodar o codigo e observar automaticamente use um script personalizado
+15)"scripts":{"dev": "nodemon index.js"}
+16) yarn dev (para deixar rodando)
+17)abrir um terminal paralelo para instalar outras coisas
+18)instalar insomnia.Rest
+19)Métodos HTTP: GET, POST, DELETE, PUSH 
+20)query params, route params, body 
+21)Query Params: request.query (filtros, ordenação, paginação, ...)
+22)Route Params: request.route (identificar um recurso na alteração ou remoção)
+23)Body: request.body (dados para criação ou alteração de um registro)
+24)conectar o banco de dados (MongoDB - Não Relacional)
+25)criar conta no "Try Free"
+26) user e pw padrões
+27)cluster criado (Plataforma Shiva - Servidor)
+28)criar um usuário e senha em "Database Accesss"
+29)user => MatheusDomingos pw => padrão 
+30)Network Access, Whitelist Entry vai ser o ip do servidor da aplicação
+31)Em ambiente de desenvolvimento selecionar: "Allow access from anywhere"
+32)Cluster => Connect => Connect your Application
+33)Driver => Node.js Version => 3.0 or later 
+34) Copy Connection String 
+35) instalar Moongose: "yarn add mongoose" (dentro da pasta backend)
+36) connect usando a string, alterar valores de pw, user e banco 
+37) portquiz.net:27017 (porta padrão do mongodb)
+38) inicio da programação grosseira da aplicação
+39) criado pasta SRC e coloca index pra dentro 
+40) altera o script, adiciona o caminho correto 
+41) criado um arquivo exclusivo para rotas, dentro do SRC => routes.js 
+42)criar dentro da pasta SRC a pasta "models"
+43)adicionar o Axios: "yarn add axios"
+44)MongoDB Compass 
+45)connectar com o cluster, bem ituitivo
+46)criar pasta "utils" dentro de models 
+47)criar arquivo "PointSchema.js"
+48) inseridos varias alterações para conseguir usar a localização
+49) camada de controllers, pouco de abstração para ficar mais limpo o código
+50) controllers dentro da pasta SRC 
+51) DevController.js criado, geralmente um por entidade
+52) logica para checar se o dev já existe no banco de dados 
+53) iniciou-se as logicas para listar os Devs 
+54) funcões padroes do controler: index, show, store, update, destroy
+55) criar o SearchController.js para ser a busca mobile 
+56) conceito de dry, DO NOT REPEAT YOURSELF
+57)criado pasta "utils" dentro de SRC, dentro dela o arquivo parseStringAsArray.js
+
+**--** Aula 03 - Construindo a interface web 15/01 **--**
+
+1)criar uma pasta para o projeto usando um comando pronto 
+2)run: npx create-react-app my-app
+3)começo do código: -> import React from 'react' (ESModules)
+4)Componente: Bloco isolado de HTML, CSS e JS, o qual não interfere no restante da aplicação 
+5)Propriedade: Informações que um Componente PAI passa para um Componente FILHO
+6)Estado: Informações mantidas pelo Componente (lembrar: Imutabilidade)
+7) dentro da pasta source(src) deixar apenas os arquivos App.js e index.js 
+8) @import (fonte da Google - ver tempo 46min)
+9) Global.css -> 46:19
+10) App.css -> 48:29
+11) Sidebar.css -> 59:00
+12) VER IMAGEM SRC 1:00:16 (alterar código)
+13) media query? => responsividade
+14) 01:09:17 -> começa sobre acessar a geolocalização atravez do navegador web (função global)
+15) Um componente por arquivo, todo código deve estar dentro do componente
+16) 1:11:00 começo do uso do UseEffect 
+17) Seleciona uma parte do codigo e aperta CTRL+D varias vezes ate selecionar tudo que queres mudar 
+18) programação Imperativa (React)
+19) 1:16:00 -> começa a usar o UseState 
+20) valor de um input dentro de um valor de um estado 01:18:36
+21) HandleAddDev começa a ser feita em 1:20:20
+22) Primeira chamada a API 
+23) ALTERAÇÕES NO BACKEND PARA PODER ACESSAR A API 
+24) "yarn add Cors" dentro da pasta backend 
+25) importa e executa cors 
+26) volta para o front 
+27) "yarn add axios" dentro da pasta frontend (chamada web pelo Diego)
+28) pasta "services" dentro de "src" e cria-se o arquivo "api.js"
+29) useEffect( () => {}, []);
+30) adição dentro de um array no react => setDevs([...devs, response.data]);
+31) 01:33:40 -> organização das pastas e arquivos 
+32) criado pasta "components" dentro de "src", dentro dela o "DevItem"
+33) copia a parte do DevItem do Main.css e coloca no style do componente recém criado
+34) criado componente DevForm
+35) mudanças no HandleAddDev em 01:39:00 (pau come)
+36) ADICIONAR A FUNCIONALIDADE DE EDITAR E EXCLUIR UM DEV DESAFIO 
+
+
+**--** Aula 04 - Desenvolvendo o App Mobile 16/01 **--**
+
+1) docs.rocketseat.dev e deixar a maquina pronta o desenvolvimento mobile 
+2) baixar o app Expo no celular 
+3) inslar Expo no pc, dentro da pasta "semanaomnistack" -> yarn global add expo-cli 
+4) checar sobre o path do yarn (executar algo que foi instalado globalmente)
+5) iniciar projeto atraves do código: expo init mobile(nome que tu quiser)
+6) cd mobile, yarn start 
+7)abre o celular e scanea o qrcode
+8) expo common issues (site da rocketseat com varias dicas quentíssimas)
+9) criado pasta 'src' e dentro dela a pasta 'pages'
+10) criado o arquivo Routes.js dentro do 'src' 
+11) yarn add react-navigation 
+12)entrar no site reactnavigation.org/.../getting-started e instalar na pasta o comando que está 
+la na sessão "expo install ... " 
+13)yarn add react-navigation-stack ( mais famoso) - olhar no site a aba "hello react navigation"
+14)yarn add @react-native-community/masked-view (tambem no terminal, vulgo na pasta)
+15)Nao existe herança de style no react-native
+16) não pode ter um componente um baixo do outro sem um container em volta !!!! IMPORTANTE
+17) no caso do 16 usar a técnica "fragment" com a tag vazia <> componentes aqui </>
+18) instalar parte de mapas, "expo install react-native-maps"
+19) uma chaves pra incluir javascript dentro do JSX, se colocar mais outra chave vai ser um objeto js
+20) instalar: "expo install expo-location"
+21) instalar: "expo install react-native-webview"
+21-a) importação de icones via materialIcons 01:11:00
+22) desafio é fazer o teclado não tempar o menu quando for digitar
+23) yarn add axios 
+24) dentro da pasta "SRC" foi criado a pasta "services" e detro o arquivo api.js 
+25) ver video em 1:19:00 sobre configurar IP de comunicação 
+26) 
+ 
+
+ **--** Aula 05 - Funcionalidades avançadas - 17/01 **--**
+
+1) dentro do backend => "yarn add socket.io"
+2) alterações no index.js do backend
+3) criação do arquivo websocket.js 
+4)08:15 sai do backend e vai pro mobile para alterar protocolo
+5) instala a versão a cliente => "yarn add socket.io-client" 
+6) criado o arquivo socket.js dentro da pasta services  
+7) de novo ver o IP para conexão com servidor backend
+8) 12min começa alterar o Main do mobile 
+9) 15min yellow socket error 
+10) 20min backend manda mensagem ao front sem requisição
+11) 21:53 armazenar todas as conexões que a app teve
+12) 25:00 começa a alterar o DevController
+13) 26:00 filtro de conexões no websocket 
+14)arquivo para calcular distancia entre dois pontos usando latitude longitude
+15) 35min volta pro mobile editar o socket para mostrar o novo-dev na região
+16) 36min começa a mexer no main.js do mobile para mosrtar novo dev 
+
+ **--** Aula JUNTA TUDO **--**
+
+ 1) index.html do front (react) trocar o lang para "pt-br" 
+ 2) yarn dev (inicializa backend)
+ 3)yarn start (inicializa o mobile)
+ 3)yarn start (inicializa o front)
+ 4) code . dentro da pasta vai abrir ela com o VSCODE
+
+ 11) 
