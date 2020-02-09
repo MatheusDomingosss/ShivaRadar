@@ -1,11 +1,47 @@
-    import React from 'react';
+import React , { useEffect, useState }from 'react';
 
-    import { Title } from './styles';
+import Sidebar from '../../components/SideBar';
+import '../../styles.css';
 
-    export default function Dashboard() {
-        return (
-            <Title>
-                Dashboard
-            </Title>
-        )
+import DevItem from '../../components/DevItem';
+import DevForm from '../../components/DevForm';
+// import { Container } from './styles';
+import api from '../../services/api';
+
+
+export default function Dashboard() {
+    const [devs, setDevs] = useState([]);
+
+
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');  
+
+      setDevs(response.data);
     }
+
+    loadDevs();
+  },[]);
+
+  async function handleAddDev(data) {
+    const response = await api.post('/devs', data);
+
+    setDevs([...devs, response.data]); 
+  }
+    return (
+        <body>
+            <aside>
+                <Sidebar></Sidebar>
+                <DevForm onSubmit={handleAddDev}/>  
+            </aside>
+
+            <main>
+                <ul>
+                    {devs.map(dev => (
+                        <DevItem key={dev._id} dev={dev} />
+                    ))}
+                </ul>
+            </main>
+        </body>
+    );
+}
