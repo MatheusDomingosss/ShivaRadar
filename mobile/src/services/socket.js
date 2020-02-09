@@ -1,35 +1,35 @@
-import socketio from 'socket.io-client';
+// import socketio from 'socket.io-client';
 
-const socket = socketio('http://192.168.1.2:3333', {
-  autoConnect: false,
-});
+// const socket = socketio('http://192.168.1.2:3333', {
+//   autoConnect: false,
+// });
 
-function subscribeToNewDevs(subcribeFunction) {
-  socket.on('new-dev', subcribeFunction);
-};
+// function subscribeToNewDevs(subcribeFunction) {
+//   socket.on('new-dev', subcribeFunction);
+// };
 
 
-function connect(latitude, longitude, techs){
-  socket.io.opts.query = {
-    latitude,
-    longitude,
-    techs,
-  };
+// function connect(latitude, longitude, techs){
+//   socket.io.opts.query = {
+//     latitude,
+//     longitude,
+//     techs,
+//   };
 
-  socket.connect();
-};
+//   socket.connect();
+// };
 
-function disconnect() {
-  if (socket.connected) {
-    socket.disconnect();
-  }
-};
+// function disconnect() {
+//   if (socket.connected) {
+//     socket.disconnect();
+//   }
+// };
 
-export {
-  connect,
-  disconnect,
-  subscribeToNewDevs,
-};
+// export {
+//   connect,
+//   disconnect,
+//   subscribeToNewDevs,
+// };
 
 
 //   socket.on('message', text => {

@@ -1,79 +1,68 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
-import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
+import { requestPermissionsAsync,getCurrentPositionAsync } from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 
+import firebase from '../config/firebase';
+
 import api from '../services/api';
-import { connect, disconnect, subscribeToNewDevs } from '../services/socket';
 
 
 function Main({ navigation }) {
   const [currentRegion, setCurrentRegion] = useState(null);
-  const [devs, setDevs] = useState([]);
-  const [techs, setTechs] = useState('');
+  const [gamers, setGamers] = useState([]);
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     async function loadInitialPosition() {
       const { granted } = await requestPermissionsAsync();
-      
+
       if (granted) {
-        const { coords } = await getCurrentPositionAsync({
+        const { coords } = await getCurrentPositionAsync({ 
           enableHighAccuracy: true,
         });
 
         const { latitude, longitude } = coords;
 
-        setCurrentRegion ({
+        setCurrentRegion({
           latitude,
           longitude,
           latitudeDelta: 0.04,
           longitudeDelta: 0.04,
-        });
+        })
       }
     }
 
     loadInitialPosition();
   }, []);
 
-  useEffect (() => {
-    subscribeToNewDevs(dev => setDevs([...devs, dev]));
-  }, [devs]);
-
-  function setupWebsocket() {
-    disconnect();
-
+  async function loadGamers() {
     const { latitude, longitude } = currentRegion;
 
-    connect(
-      latitude,
-      longitude,
-      techs,
-    );
-  }
+    let lat = latitude;
+    let long = longitude;
 
-  async function loadDevs() {
-    const { latitude, longitude } = currentRegion;
 
     const response = await api.get('/search', {
       params: {
-        latitude,
-        longitude,
-        techs
+        lat,
+        long,
+        category
       }  
     });
 
-    setDevs(response.data.devs);
-    setupWebsocket();
+    setGamers(response.data.gamers);
+    // setupWebsocket();
   };
 
   function handleRegionChanged(region) {
     setCurrentRegion(region);
   }
 
-  if(!currentRegion) {
+  if (!currentRegion){
     return null;
-  }
+  }  
 
   return (
     <>
@@ -82,53 +71,53 @@ function Main({ navigation }) {
         initialRegion={currentRegion} 
         style={styles.map}
       >
-        {devs.map(dev => (
+        {gamers.map(gamer => (
           <Marker 
-            key={dev._id}
+            key={gamer._id}
             coordinate={{ 
-              latitude: dev.location.coordinates[1], 
-              longitude: dev.location.coordinates[0], 
+              latitude: gamer.location.coordinates[1], 
+              longitude: gamer.location.coordinates[0]
             }}
           >
-            <Image 
-              style={styles.avatar} 
-              source={{uri: dev.avatar_url }}
-            />
+          <Image 
+            style={styles.avatar} 
+            source={{ uri: gamer.logo_url }}
+          />  
 
-            <Callout onPress={()=> {
-              navigation.navigate('Profile', { github_username: dev.github_username });
-            }}>
-              <View style={styles.callout}>
-                <Text style={styles.devName}>{dev.name}</Text>
-                <Text style={styles.devBio}>{dev.bio}</Text>
-                <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>
-              </View>
-            </Callout>
-          </Marker>
+          <Callout onPress={() => {
+            navigation.navigate('Profile', {web_username: gamer.web });
+          }}>
+            <View style={styles.callout}>
+              <Text style={styles.gamerName}>{gamer.name}</Text>
+              <Text style={styles.gamerAdress}>{gamer.adrress}</Text>
+              <Text style={styles.gamerCategory}>{gamer.category}</Text>
+            </View>
+          </Callout>
+        </Marker>
         ))}
       </MapView>
       <View style={styles.searchForm}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Buscar Devs por techs..."
-          placeholderTextColor="#999"
-          autoCapitalize="words"
-          autoCorrect={false}
-          value={techs}
-          onChangeText={setTechs}
-        />
+          <TextInput 
+            style={styles.searchInput}
+            placeholder="Buscar estabelecimentos..."
+            placeholderTextColor="#999"
+            autoCapitalize="words"
+            autoCorrect= {false}
+            value={category}
+            onChangeText={setCategory}
+          />
 
-        <TouchableOpacity onPress={loadDevs} style={styles.loadButton}>
-          <MaterialIcons name="my-location" size={20} color="#FFF"/>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={loadGamers} style={styles.loadButton}>
+            <MaterialIcons name="games" size={20} color="#FFF" /> 
+          </TouchableOpacity>
       </View>
     </>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   map: {
-    flex: 1,
+    flex: 1
   },
 
   avatar: {
@@ -136,24 +125,24 @@ const styles = StyleSheet.create({
     height: 54,
     borderRadius: 4,
     borderWidth: 4,
-    borderColor: '#FFF',
+    borderColor: '#FFF'
   },
 
   callout: {
     width: 260,
   },
 
-  devName: {
+  gamerName: {
     fontWeight: 'bold',
     fontSize: 16,
   },
 
-  devBio: {
-    color:'#666',
+  gamerAdress: {
+    color: '#666',
     marginTop: 5,
   },
 
-  devTechs: {
+  gamerCategory: {
     marginTop: 5,
   },
 
@@ -186,22 +175,14 @@ const styles = StyleSheet.create({
   loadButton: {
     width: 50,
     height: 50,
-    backgroundColor:'#8E4Dff',
+    backgroundColor:'#723888',
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-  marginLeft: 15,
-
+    marginLeft: 15,
   },
 
-});
+
+})
 
 export default Main;
-
-
-
-
-
-
-
-// import { view } from 'react-native';

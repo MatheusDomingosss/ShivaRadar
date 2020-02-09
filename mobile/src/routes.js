@@ -6,25 +6,24 @@ import Profile from './pages/Profile';
 
 const Routes = createAppContainer(
   createStackNavigator({
-    Main: {
+    Main:{
       screen: Main,
       navigationOptions: {
-        title: 'DevRadar'
+        title: 'Radar Shiva'
       },
     },
-    Profile: {
+    Profile:{
       screen: Profile,
       navigationOptions: {
-        title: 'Perfil no Github'
+        title: 'Página Comercial'
       },
     },
   }, {
     defaultNavigationOptions: {
-      headerBackTitleVisible: false,
       headerTintColor: '#FFF',
       headerStyle: {
-        backgroundColor: '#7D40E7',
-      },
+        backgroundColor: '#CB4F24',
+      }
     },
   })
 );
