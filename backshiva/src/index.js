@@ -5,7 +5,7 @@ const routes = require('./routes');
 const app = express();
 
 
-mongoose.connect('mongodb+srv://MatheusDomingos:dmg13CHAOS@plataformashiva-eylb1.gcp.mongodb.net/mapeamento?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://MatheusDomingos:dmg13CHAOS@plataformashiva-eylb1.gcp.mongodb.net/fakedata?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

@@ -1,14 +1,14 @@
 import React from 'react';
-import Sidebar from '../../components/SideBar';
+import NavBar from '../../components/NavBar';
 
 // import { Container } from './styles';
 
 export default function Historico() {
     return (
         <body>
-            <aside>
-                <Sidebar></Sidebar>
-            </aside>
+            <nav>
+                <NavBar></NavBar>
+            </nav>
 
             <main>
 

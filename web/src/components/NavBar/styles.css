@@ -1,0 +1,13 @@
+.bg-roxo{
+  background-color: #563d7c!important;
+}
+
+.navbar-light .navbar-brand {
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
