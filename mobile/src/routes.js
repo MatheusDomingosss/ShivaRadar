@@ -15,7 +15,7 @@ const Routes = createAppContainer(
     Profile:{
       screen: Profile,
       navigationOptions: {
-        title: 'Página Comercial'
+        title: 'Página Web'
       },
     },
   }, {

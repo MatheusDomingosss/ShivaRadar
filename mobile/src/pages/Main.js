@@ -89,7 +89,7 @@ function Main({ navigation }) {
           }}>
             <View style={styles.callout}>
               <Text style={styles.gamerName}>{gamer.name}</Text>
-              <Text style={styles.gamerAdress}>{gamer.adrress}</Text>
+              <Text style={styles.gamerAddress}>{gamer.address}</Text>
               <Text style={styles.gamerCategory}>{gamer.category}</Text>
             </View>
           </Callout>
@@ -121,11 +121,12 @@ const styles = StyleSheet.create({
   },
 
   avatar: {
-    width: 54,
-    height: 54,
-    borderRadius: 4,
-    borderWidth: 4,
-    borderColor: '#FFF'
+    width: 60,
+    height: 60,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#723888',
+    backgroundColor: '#FFF'
   },
 
   callout: {
@@ -137,13 +138,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 
-  gamerAdress: {
+  gamerAddress: {
     color: '#666',
+    fontSize: 12,
     marginTop: 5,
   },
 
   gamerCategory: {
     marginTop: 5,
+    color: '#723888',
+    fontWeight: 'bold',
   },
 
   searchForm: {
