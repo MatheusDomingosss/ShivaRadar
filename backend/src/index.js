@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,18 +13,16 @@ mongoose.connect('mongodb+srv://MatheusDomingos:dmg13CHAOS@plataformashiva-eylb1
   useCreateIndex: true,
 });
 
+app.use(cors()); 
+
 app.use(express.json());
 app.use(routes);
 
 app.listen(8242);
 
 
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const cors = require('cors');
-// const http = require('http');
 
-// const routes = require('./routes');
+
 // const { setupWebsocket } = require('./websocket')
 
 // const app = express();
