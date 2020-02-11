@@ -7,6 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import firebase from '../config/firebase';
 
 import api from '../services/api';
+import { connect, disconnect } from '../services/socket';
 
 
 function Main({ navigation }) {
@@ -37,6 +38,16 @@ function Main({ navigation }) {
     loadInitialPosition();
   }, []);
 
+  function setupWebsocket() {
+    const {latitude, longitude } = currentRegion;
+
+    connect(
+      latitude,
+      longitude,
+      category,
+    );
+  }
+
   async function loadGamers() {
     const { latitude, longitude } = currentRegion;
 
@@ -53,7 +64,7 @@ function Main({ navigation }) {
     });
 
     setGamers(response.data.gamers);
-    // setupWebsocket();
+    setupWebsocket();
   };
 
   function handleRegionChanged(region) {

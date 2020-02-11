@@ -9,14 +9,18 @@ exports.setupWebsocket = (server) => {
   io = socketio(server);
 
   io.on('connection', socket => {
-    const { latitude, longitude, techs } = socket.handshake.query;
+    const { lat, long, category } = socket.handshake.query;
     
+    console.log (lat);
+    console.log (long);
+    console.log (socket.handshake.query);
+
     connections.push({
       id: socket.id,
-      techs: parseStringAsArray(techs),
+      category,
       coordinates: {
-        latitude: Number(latitude),
-        longitude: Number(longitude),
+        lat: Number(lat),
+        long: Number(long),
       },
     });
   });
